@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * 前序遍历二叉树
  * 中左右
+ *
+ * 遍历另一种叫法：序列化。即把一棵平面的二叉树序列化为一维的数组
  */
 public class PreOrderTraversal_144 {
     public static void main(String[] args) {
