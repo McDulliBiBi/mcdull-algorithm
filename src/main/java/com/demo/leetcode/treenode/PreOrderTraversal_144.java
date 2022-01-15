@@ -1,12 +1,11 @@
 package com.demo.leetcode.treenode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 前序遍历二叉树
  * 中左右
- *
+ * <p>
  * 遍历另一种叫法：序列化。即把一棵平面的二叉树序列化为一维的数组
  */
 public class PreOrderTraversal_144 {
@@ -24,6 +23,7 @@ public class PreOrderTraversal_144 {
 
     /**
      * 方法一：递归
+     *
      * @param root
      * @return
      */
@@ -42,5 +42,37 @@ public class PreOrderTraversal_144 {
         list.add(treeNode.val);
         traversal(treeNode.left, list);
         traversal(treeNode.right, list);
+    }
+
+    /**
+     * 迭代遍历
+     * 因为递归遍历是隐式的维护了一个栈，所以可以显示的自己写一个栈维护要遍历的节点，实现遍历
+     * @param root
+     * @return
+     */
+    public static List<Integer> preOrderTraversalV2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        //stack栈: 先进后出
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
+        return result;
     }
 }
